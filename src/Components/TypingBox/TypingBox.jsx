@@ -16,6 +16,12 @@ const TypingBox = () => {
   const [testStart, settestStart] = useState(false);
   const [testEnd, settestEnd] = useState(false);
   const [testIntervalID, setintervalID] = useState(null);
+  const [correctCharacters, setCorrectCharacters] = useState(0);
+  const [incorrectCharacters, setIncorrectCharacters] = useState(0);
+  const [missedCharacters, setMissedCharacters] = useState(0);
+  const [correctWords, setCorrectWords] = useState(0);
+  const [extraCharacters, setExtraCharacters] = useState(0);
+
   const { testTime } = useTestMode();
   const [countdown, setcountdown] = useState(testTime);
   const { theme } = useTheme();
@@ -36,6 +42,14 @@ const TypingBox = () => {
     const allCurrentChars = wordsSpanRef[currentWordIndex].current.childNodes;
     if (e.keyCode === 32) {
       // logic for space
+
+      let correctCharsInWord =
+        wordsSpanRef[currentWordIndex].current.querySelectorAll(".correct");
+
+      if (correctCharsInWord === allCurrentChars.length) {
+        setCorrectWords(correctWords + 1);
+      }
+
       if (allCurrentChars.length <= currentCharacterIndex) {
         // remove the cursor from last char of a word
         allCurrentChars[currentCharacterIndex - 1].classList.remove(
@@ -45,6 +59,9 @@ const TypingBox = () => {
         // remove the cursor from middle of the word
         allCurrentChars[currentCharacterIndex].classList.remove(
           "current-right"
+        );
+        setMissedCharacters(
+          missedCharacters + (allCurrentChars.length - currentCharacterIndex)
         );
       }
 
@@ -97,13 +114,16 @@ const TypingBox = () => {
       );
       wordsSpanRef[currentWordIndex].current.append(newSpan);
       setcurrentCharacterIndex(currentCharacterIndex + 1);
+      setExtraCharacters(extraCharacters + 1);
       return;
     }
 
     if (e.key === allCurrentChars[currentCharacterIndex].innerText) {
       allCurrentChars[currentCharacterIndex].className = "correct";
+      setCorrectCharacters(correctCharacters + 1);
     } else {
       allCurrentChars[currentCharacterIndex].className = "incorrect";
+      setIncorrectCharacters(incorrectCharacters + 1);
     }
 
     if (currentCharacterIndex + 1 === allCurrentChars.length) {
@@ -151,6 +171,13 @@ const TypingBox = () => {
     setWordsArray(randomWords(50));
     resetWordsClassNameFunction();
     focusInput();
+  };
+
+  const calculateWPM = () => {
+    return Math.round(correctCharacters / 5 / (testTime / 60));
+  };
+  const calculateAccuracy = () => {
+    return Math.round((correctWords / currentWordIndex) * 100);
   };
 
   useEffect(() => {

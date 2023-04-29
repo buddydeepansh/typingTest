@@ -7,21 +7,40 @@ import { useTheme } from "../../Context/ThemeContext";
 
 const Footer = () => {
   const { setTheme, theme } = useTheme();
-  const [value, setvalue] = useState(theme);
   const handleChange = (e) => {
-    console.log(e);
-    setvalue(e.value);
     setTheme(e.value);
+    localStorage.setItem("theme", JSON.stringify(e.value));
   };
   return (
     <div className="Footer">
       <div className="links">Links</div>
       <div className="themeButton">
         <Select
-          value={value}
+          value={theme}
           onChange={handleChange}
           options={themeOptions}
           menuPlacement="top"
+          styles={{
+            control: (styles) => ({
+              ...styles,
+              backgroundColor: theme.background,
+            }),
+            menu: (styles) => ({
+              ...styles,
+              backgroundColor: theme.background,
+            }),
+            singleValue: (styles) => ({
+              ...styles,
+              color: theme.typeBoxText,
+            }),
+            option: (styles, { isFocused }) => {
+              return {
+                ...styles,
+                backgroundColor: !isFocused ? theme.background : theme.text,
+                color: isFocused ? theme.background : theme.typeBoxText,
+              };
+            },
+          }}
         />
       </div>
     </div>

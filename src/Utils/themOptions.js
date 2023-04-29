@@ -6,9 +6,9 @@ const darkTheme = {
 };
 const redTheme = {
   label: "Red",
-  background: "red",
-  text: "purple",
-  typeBoxText: "pink",
+  background: "#fd5c63",
+  text: "#F40009",
+  typeBoxText: "#E23D28",
 };
 
 const fledgingTheme = {
