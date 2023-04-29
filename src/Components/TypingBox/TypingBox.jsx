@@ -58,6 +58,9 @@ const TypingBox = () => {
 
     if (e.keyCode === 8) {
       // case for backspace
+      if (currentWordIndex === 0 && currentCharacterIndex === 0) {
+        return;
+      }
       if (currentCharacterIndex !== 0) {
         if (allCurrentChars.length === currentCharacterIndex) {
           if (
