@@ -160,7 +160,12 @@ const TypingBox = () => {
   }, [testTime]);
 
   useEffect(() => {
-    console.log("themes", theme);
+    // console.log("themes", theme);
+    const body = document.querySelector("body");
+    body.style.backgroundColor = theme.background;
+    body.style.color = theme.text;
+    const words = document.querySelector(".words");
+    words.style.color = theme.typeBoxText;
   }, [theme]);
 
   return (

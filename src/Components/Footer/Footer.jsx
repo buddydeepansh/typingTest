@@ -6,8 +6,8 @@ import { themeOptions } from "../../Utils/themOptions";
 import { useTheme } from "../../Context/ThemeContext";
 
 const Footer = () => {
-  const [value, setvalue] = useState({});
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
+  const [value, setvalue] = useState(theme);
   const handleChange = (e) => {
     console.log(e);
     setvalue(e.value);

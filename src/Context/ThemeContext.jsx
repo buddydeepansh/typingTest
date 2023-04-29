@@ -4,7 +4,7 @@ import { themeOptions } from "../Utils/themOptions";
 const ThemeContext = createContext();
 
 export const ThemeContextProvider = ({ children }) => {
-  const [theme, setTheme] = useState(themeOptions[0].value);
+  const [theme, setTheme] = useState(themeOptions[2].value);
   const values = { theme, setTheme };
   return <ThemeContext.Provider value={values}>{children}</ThemeContext.Provider>;
 };
