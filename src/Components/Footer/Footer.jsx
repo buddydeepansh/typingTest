@@ -7,11 +7,11 @@ import { useTheme } from "../../Context/ThemeContext";
 
 const Footer = () => {
   const [value, setvalue] = useState({});
-  const { settheme } = useTheme();
+  const { setTheme } = useTheme();
   const handleChange = (e) => {
     console.log(e);
     setvalue(e.value);
-    settheme(e.value);
+    setTheme(e.value);
   };
   return (
     <div className="Footer">
