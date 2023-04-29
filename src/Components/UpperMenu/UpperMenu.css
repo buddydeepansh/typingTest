@@ -1,0 +1,18 @@
+.upper-menu {
+  display: flex;
+  width: 1000px;
+  margin: 0 auto;
+  font-size: 1.3rem;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+.upper-menu .modes {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.time-mode:hover {
+  color: green;
+  cursor: pointer;
+}
