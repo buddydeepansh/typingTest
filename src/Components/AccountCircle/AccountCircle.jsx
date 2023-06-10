@@ -3,6 +3,8 @@ import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded"
 import "./AccountCircle.css"
 import { Modal, Tab, Tabs } from "@mui/material"
 import AppBar from "@mui/material/AppBar"
+import LoginForm from "../LoginForm/LoginForm"
+import SignUpForm from "../SignUpForm/SignUpForm"
 const AccountCircle = () => {
   const [open, setOpen] = useState(false)
   const [valueTabs, setValueTabs] = useState(0)
@@ -31,8 +33,8 @@ const AccountCircle = () => {
               <Tab label="sign up"></Tab>
             </Tabs>
           </AppBar>
-          {valueTabs === 0 && <></>}
-          {valueTabs === 1 && <></>}
+          {valueTabs === 0 && <LoginForm />}
+          {valueTabs === 1 && <SignUpForm />}
         </div>
       </Modal>
     </div>
