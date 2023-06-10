@@ -4,6 +4,7 @@ import { Box, Button, TextField } from "@mui/material"
 import { useTheme } from "../../Context/ThemeContext"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../firebaseConfig"
+import { toast } from "react-toastify"
 
 const LoginForm = () => {
   const [email, setemail] = useState("")
@@ -12,15 +13,42 @@ const LoginForm = () => {
   const theme = themee.theme
   const handleSubmit = (e) => {
     if (!email || !password) {
-      alert("Please fill all details!")
+      toast.warn("Please enter all fields", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      })
       return
     } else {
       signInWithEmailAndPassword(auth, email, password)
         .then((res) => {
-          alert("user logged in")
+          toast.success("User is Logged In", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+          })
         })
         .catch((error) => {
-          alert("Not able to log in")
+          toast.error("Invalid credentials", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+          })
         })
     }
   }

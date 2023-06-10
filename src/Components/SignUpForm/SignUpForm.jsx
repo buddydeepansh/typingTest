@@ -4,6 +4,7 @@ import React, { useState } from "react"
 import { useTheme } from "../../Context/ThemeContext"
 import { auth } from "../../firebaseConfig"
 import "./SignUpForm.css"
+import { toast } from "react-toastify"
 
 const SignUpForm = () => {
   const [email, setemail] = useState("")
@@ -13,18 +14,54 @@ const SignUpForm = () => {
   const theme = themee.theme
   const handleSubmit = (e) => {
     if (!email || !password || !confirmPassword) {
-      alert("Please fill all details!")
+      toast.warn("Please enter all fields", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      })
       return
     } else if (password !== confirmPassword) {
-      alert("Passwords do not match")
+      toast.warn("Both Passwords do not match", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      })
       return
     } else {
       createUserWithEmailAndPassword(auth, email, password)
         .then((res) => {
-          alert("user created")
+          toast.success("User Account Created", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+          })
         })
         .catch((error) => {
-          alert("Not able to create user")
+          toast.error("Not able to create user", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+          })
         })
     }
   }
