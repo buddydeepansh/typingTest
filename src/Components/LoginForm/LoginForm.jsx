@@ -5,6 +5,7 @@ import { useTheme } from "../../Context/ThemeContext"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../firebaseConfig"
 import { toast } from "react-toastify"
+import { errorMapping } from "../../Utils/ErrorMapping"
 
 const LoginForm = () => {
   const [email, setemail] = useState("")
@@ -39,7 +40,7 @@ const LoginForm = () => {
           })
         })
         .catch((error) => {
-          toast.error("Invalid credentials", {
+          toast.error(errorMapping[error.code] || "Some error occured", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
