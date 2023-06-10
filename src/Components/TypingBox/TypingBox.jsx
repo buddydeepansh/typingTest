@@ -3,6 +3,7 @@ import "./TypingBox.css";
 import UpperMenu from "../UpperMenu/UpperMenu";
 import { useTestMode } from "../../Context/TestModeContext";
 import { useTheme } from "../../Context/ThemeContext";
+import Stats from "../Stats/Stats";
 
 var randomWords = require("random-words");
 
@@ -202,7 +203,14 @@ const TypingBox = () => {
     <div>
       <UpperMenu countdown={countdown} />
       {testEnd ? (
-        <h1>Test Ended</h1>
+        <Stats
+          wpm={calculateWPM()}
+          accuracy={calculateAccuracy()}
+          correctCharacters={correctCharacters}
+          incorrectCharacters={incorrectCharacters}
+          missedChars={missedCharacters}
+          extraChars={extraCharacters}
+        />
       ) : (
         <>
           <div className="type-box" onClick={focusInput}>
