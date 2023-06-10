@@ -10,3 +10,14 @@
   position: static !important;
   background: transparent !important;
 }
+.googleBox{
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.googleBTN{
+  margin-bottom: 1rem;
+}
