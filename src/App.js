@@ -1,14 +1,13 @@
-import UpperMenu from "./Components/UpperMenu/UpperMenu";
-import TypingBox from "./Components/TypingBox/TypingBox";
 import "./App.css";
+import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
+import TypingBox from "./Components/TypingBox/TypingBox";
 
 function App() {
   return (
     <div className="Canvas">
-      <div className="Header">Header</div>
+      <div className="Header"><Header/></div>
       <TypingBox />
-      {/* <UpperMenu /> */}
       <Footer/>
     </div>
   );

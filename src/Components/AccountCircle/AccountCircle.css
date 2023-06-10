@@ -1,0 +1,12 @@
+.AccountModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalRoot {
+  width: 400px;
+}
+.modalRootAppBar {
+  position: static !important;
+  background: transparent !important;
+}
