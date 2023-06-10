@@ -35,7 +35,7 @@ const TypingBox = () => {
   }, [wordsArray])
 
   const handleUserInput = (e) => {
-    console.log(e.key, e.keyCode)
+    // console.log(e.key, e.keyCode)
     if (!testStart) {
       startTimer()
       settestStart(true)
