@@ -2,7 +2,14 @@ import React from "react"
 import Graph from "../Graph/Graph"
 import "./Stats.css"
 
-const Stats = ({ wpm, accuracy, correctCharacters, incorrectCharacters, missedChars, extraChars }) => {
+const Stats = ({ wpm, accuracy, correctCharacters, incorrectCharacters, missedChars, extraChars, graphData }) => {
+  let timeSet = new Set()
+  const newGraph = graphData.filter((i) => {
+    if (!timeSet.has(i[0])) {
+      timeSet.add(i[0])
+      return i
+    }
+  })
   return (
     <div className="stats-box">
       <div className="left-stats">
@@ -16,7 +23,7 @@ const Stats = ({ wpm, accuracy, correctCharacters, incorrectCharacters, missedCh
         </div>
       </div>
       <div className="right-stats">
-        <Graph />
+        <Graph graphData={newGraph} />
       </div>
     </div>
   )

@@ -2,25 +2,22 @@ import React from "react"
 import { Chart as ChartJs, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js"
 import { Line } from "react-chartjs-2"
 import "./Graph.css"
+import { useTheme } from "../../Context/ThemeContext"
 
 ChartJs.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 
-const Graph = () => {
+const Graph = ({ graphData }) => {
+  const { theme } = useTheme()
   return (
     <>
       <Line
         data={{
-          labels: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          labels: graphData.map((i) => i[0]),
           datasets: [
             {
-              data: [3, 4, 5, 6, 7, 8, 9, 1, 2],
-              label: "graph1",
-              borderColor: "red",
-            },
-            {
-              data: [3, 1, 2, 8, 5, 4, 3, 2, 1],
-              label: "graph2",
-              borderColor: "green",
+              data: graphData.map((i) => i[1]),
+              label: "WPM",
+              borderColor: theme.text,
             },
           ],
         }}
