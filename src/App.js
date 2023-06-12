@@ -1,20 +1,21 @@
-import "./App.css"
-import Header from "./Components/Header/Header"
-import Footer from "./Components/Footer/Footer"
-import TypingBox from "./Components/TypingBox/TypingBox"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import "./App.css"
+import HomaePage from "./Pages/HomaePage"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import UserPage from "./Pages/UserPage"
 
 function App() {
   return (
-    <div className="Canvas">
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
-      <div className="Header">
-        <Header />
+    <Router>
+      <div className="Canvas">
+        <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="light" />
+        <Routes>
+          <Route path={"/"} element={<HomaePage />} />
+          <Route path={"/user"} element={<UserPage />} />
+        </Routes>
       </div>
-      <TypingBox />
-      <Footer />
-    </div>
+    </Router>
   )
 }
 
