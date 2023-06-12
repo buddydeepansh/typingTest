@@ -16,6 +16,19 @@ const Stats = ({ wpm, accuracy, correctCharacters, incorrectCharacters, missedCh
   })
 
   const pushDatatoDB = async () => {
+    if (isNaN(accuracy)) {
+      toast.error("Invalid Test!!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      })
+      return
+    }
     const { uid } = auth.currentUser
     addDoc(collection(db, "Results"), {
       wpn: wpm,
